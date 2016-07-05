@@ -1,0 +1,62 @@
+angular.module('starter')
+
+.controller('SplashCtrl', function($scope, $timeout, $state) {
+  var waittime = 3000;
+  var t = $timeout(function() {
+    //$state.go('map');
+  }, waittime);
+})
+
+
+.controller('MainCtrl', function($scope) {
+})
+
+
+.controller('LoginCtrl', function($scope, $window, $localStorage, $ionicModal, Fullscreen) {
+  $scope.imgsrc="http://xmpp.hplabs.jp/demo/push/lib/avator/makoto.jpg";  
+  $scope.clickExpand = function () {
+    // Fullscreen
+    if (Fullscreen.isEnabled())
+       Fullscreen.cancel();
+    else
+       Fullscreen.all();
+  };
+  $scope.isFullScreen = false;
+  $scope.goFullScreenViaWatcher = function() {
+    $scope.isFullScreen = !$scope.isFullScreen;
+  };
+    
+  $scope.clicImage = function() {
+    console.log('clicImage');
+    $scope.modal.show();
+  }
+  
+  $scope.clickLogin = function() {
+    console.log('clickLogin');
+  }
+  
+  $scope.clickClear = function() {
+    console.log('clickClear');
+    $window.location.reload(true);
+  }
+  
+  $scope.$storage = $localStorage.$default({
+    username: '',
+    password: '',
+    nickname: '名無しさん'
+  });
+  $scope.nickname = $scope.$storage.nickname;
+  
+  
+  $ionicModal.fromTemplateUrl('templates/avator.html', {
+    scope: $scope,
+    animation: 'slide-in-down'
+  }).then(function(modal) {
+    $scope.modal = modal;
+  });
+  
+  $scope.closeAvator = function() {
+    console.log('closeAvator');
+    $scope.modal.hide();
+  }
+});
