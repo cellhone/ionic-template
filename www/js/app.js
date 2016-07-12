@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'FBAngular', 'ngStorage'])
+angular.module('starter', ['ionic', 'FBAngular', 'ngStorage', 'ngCordova'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -47,6 +47,15 @@ angular.module('starter', ['ionic', 'FBAngular', 'ngStorage'])
     views: {
       hoge: {
         templateUrl: 'templates/hoge.main.html',
+      }
+    }
+  })
+  .state('hoge.map', {
+    url: '/map',
+    views: {
+      map: {
+        templateUrl: 'templates/hoge.map.html',
+        controller: 'MapCtrl'
       }
     }
   })

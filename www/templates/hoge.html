@@ -19,11 +19,12 @@
         <i class="ion-arrow-left-c"></i> Back
       </ion-nav-back-button>
     </ion-nav-bar>
-    <ion-tabs class="tabs-icon-top tabs-stable">
+    <ion-tabs class="tabs-icon-top tabs-stable tabs-balanced">
 
       <ion-tab title="Menu" icon-on="ion-ios-information" icon-off="ion-ios-information-outline" href="#/main/menu">
       </ion-tab>
-      <ion-tab title="About" icon-on="ion-ios-information" icon-off="ion-ios-information-outline" href="#/main/about">
+      <ion-tab title="Map" icon-on="ion-ios-information" icon-off="ion-ios-information-outline" ui-sref="hoge.map">
+        <ion-nav-view name="map"></ion-nav-view>
       </ion-tab>
       <ion-tab title="Hoge" icon-on="ion-ios-information" icon-off="ion-ios-information-outline" ui-sref="hoge.main">
         <ion-nav-view name="hoge"></ion-nav-view>
