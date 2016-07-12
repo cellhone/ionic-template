@@ -25,31 +25,58 @@ angular.module('starter', ['ionic', 'FBAngular', 'ngStorage'])
 
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
-  .state('map', {
-    url: '/map',
-    templateUrl: 'templates/map.html',
-    controller: 'MapCtrl'
-  })
   .state('splash', {
     url: '/',
     templateUrl: 'templates/splash.html',
     controller: 'SplashCtrl'
   })
-  .state('hoge', {
-    url: '/hoge',
-    templateUrl: 'templates/hoge.html',
-    controller: 'HogeCtrl'
-  })
+
   .state('login', {
     url: '/login',
     templateUrl: 'templates/login.html',
     controller: 'LoginCtrl'
   })
+
+  .state('hoge', {
+    url: '/hoge',
+    templateUrl: 'templates/hoge.html',
+    abstract: true
+  })
+  .state('hoge.main', {
+    url: '/main',
+    views: {
+      hoge: {
+        templateUrl: 'templates/hoge.main.html',
+      }
+    }
+  })
+  
   .state('main', {
     url: '/main',
     templateUrl: 'templates/main.html',
-    controller: 'MainCtrl'
+    abstract: true
+  })
+  .state('main.menu', {
+    url: '/menu',
+    views: {
+      menu: {
+        templateUrl: 'templates/main.menu.html',
+        controller: 'MainCtrl'
+      }
+    }
+  })
+  .state('main.about', {
+    url: '/about',
+    views: {
+      about: {
+        templateUrl: 'templates/main.about.html'
+      }
+    }
   });
+
+    
  
-  $urlRouterProvider.otherwise("/");
+  $urlRouterProvider
+  .when('/main', '/main/menu')  /// not working?
+  .otherwise("/");
 })

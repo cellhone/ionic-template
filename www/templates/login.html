@@ -1,10 +1,15 @@
 <ion-view view-title="Login" hide-back-button="true" hide-nav-bar="false">
-  <ion-nav-buttons side="left"> <!-- right -->
-    <button class="button button-icon icon ion-refresh" ng-click="clickClear()"></button>
-  </ion-nav-buttons>
-  <ion-nav-buttons side="right"> <!-- right -->
-    <button class="button button-icon icon ion-android-expand" ng-click="clickExpand()"></button>
-  </ion-nav-buttons>
+  <ion-nav-bar class="bar-positive">
+    <ion-nav-buttons side="left">
+      <button menu-toggle="left" class="button button-icon icon ion-refresh" ng-click="clickClear()"></button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+      <button menu-toggle="left" class="button button-icon icon ion-android-expand" ng-click="clickExpand()"></button>
+    </ion-nav-buttons>
+    <ion-nav-back-button class="button-clear">
+      <i class="ion-arrow-left-c"></i> Back
+    </ion-nav-back-button>
+  </ion-nav-bar>
 
   <ion-content class="bgpositive" >
     <br> <br>

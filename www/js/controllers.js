@@ -1,9 +1,9 @@
 angular.module('starter')
 
 .controller('SplashCtrl', function($scope, $timeout, $state) {
-  var waittime = 3000;
+  var waittime = 1000;
   var t = $timeout(function() {
-    //$state.go('map');
+    $state.go('login');
   }, waittime);
 })
 
@@ -12,7 +12,7 @@ angular.module('starter')
 })
 
 
-.controller('LoginCtrl', function($scope, $window, $localStorage, $ionicModal, Fullscreen) {
+.controller('LoginCtrl', function($scope, $state, $window, $localStorage, $ionicModal, Fullscreen) {
   $scope.imgsrc="http://xmpp.hplabs.jp/demo/push/lib/avator/makoto.jpg";  
   $scope.clickExpand = function () {
     // Fullscreen
@@ -33,6 +33,7 @@ angular.module('starter')
   
   $scope.clickLogin = function() {
     console.log('clickLogin');
+    $state.go('main.menu');
   }
   
   $scope.clickClear = function() {
@@ -59,4 +60,6 @@ angular.module('starter')
     console.log('closeAvator');
     $scope.modal.hide();
   }
-});
+})
+
+

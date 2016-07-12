@@ -1,36 +1,38 @@
-<ion-side-menus enable-menu-with-back-views="false">
-  <ion-side-menu-content>
-    <ion-nav-bar class="bar-stable">
-      <ion-nav-back-button>
-      </ion-nav-back-button>
-
-      <ion-nav-buttons side="left">
-        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
-        </button>
-      </ion-nav-buttons>
-    </ion-nav-bar>
-    <ion-nav-view name="menuContent"></ion-nav-view>
-  </ion-side-menu-content>
-
+<ion-side-menus>
   <ion-side-menu side="left">
-    <ion-header-bar class="bar-stable">
-      <h1 class="title">Left</h1>
+    <ion-header-bar>
+      <h1 class="title">Main</h1>
     </ion-header-bar>
     <ion-content>
       <ion-list>
-        <ion-item menu-close ng-click="login()">
-          Login
-        </ion-item>
-        <ion-item menu-close href="#/app/search">
-          Search
-        </ion-item>
-        <ion-item menu-close href="#/app/browse">
-          Browse
-        </ion-item>
-        <ion-item menu-close href="#/app/playlists">
-          Playlists
-        </ion-item>
+        <ion-item ui-sref="login" menu-close>Logout</ion-item>
+        <ion-item href="/" menu-close>Restart</ion-item>
       </ion-list>
     </ion-content>
   </ion-side-menu>
+  <ion-side-menu-content drag-content="true">
+    <ion-nav-bar class="bar-positive">
+      <ion-nav-buttons side="left">
+        <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+      </ion-nav-buttons>
+      <ion-nav-back-button class="button-clear">
+        <i class="ion-arrow-left-c"></i> Back
+      </ion-nav-back-button>
+    </ion-nav-bar>
+    <ion-tabs class="tabs-icon-top tabs-stable">
+
+      <ion-tab title="Menu" icon-on="ion-ios-information" icon-off="ion-ios-information-outline" ui-sref="main.menu">
+        <ion-nav-view name="menu"></ion-nav-view>
+      </ion-tab>
+
+      <ion-tab title="About" icon-on="ion-ios-information" icon-off="ion-ios-information-outline" ui-sref="main.about">
+        <ion-nav-view name="about"></ion-nav-view>
+      </ion-tab>
+      
+      <ion-tab title="Hoge" icon-on="ion-ios-information" icon-off="ion-ios-information-outline" href="#/hoge/main">
+        <ion-nav-view name="hoge"></ion-nav-view>
+      </ion-tab>
+
+    </ion-tabs>
+  </ion-side-menu-content>
 </ion-side-menus>
