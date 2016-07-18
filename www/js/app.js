@@ -23,6 +23,7 @@ angular.module('starter', ['ionic', 'FBAngular', 'ngStorage', 'ngCordova'])
 })
 
 
+
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
   .state('splash', {
@@ -34,7 +35,22 @@ angular.module('starter', ['ionic', 'FBAngular', 'ngStorage', 'ngCordova'])
   .state('login', {
     url: '/login',
     templateUrl: 'templates/login.html',
-    controller: 'LoginCtrl'
+    controller: 'LoginCtrl',
+//    onEnter: function (){
+//    }
+  })
+  
+  .state('avator', {
+    url: '/avator',
+    templateUrl: 'templates/avator.html',
+    controller: 'AvatorCtrl',
+//    resolve: {
+//      avatarUrls: function ($http) {
+//        return $http.get({
+//          url: 'http://xmpp.hplabs.jp/demo/push/lib/avator/list.php'
+//        });
+//      }
+//    }
   })
 
   .state('hoge', {

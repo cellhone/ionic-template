@@ -12,8 +12,8 @@ angular.module('starter')
 })
 
 
-.controller('LoginCtrl', function($scope, $state, $window, $localStorage, $ionicModal, Fullscreen) {
-  $scope.imgsrc="http://xmpp.hplabs.jp/demo/push/lib/avator/makoto.jpg";  
+.controller('LoginCtrl', function($scope, $rootScope, $state, $window, $localStorage, $ionicModal, Fullscreen, profileService) {
+  
   $scope.clickExpand = function () {
     // Fullscreen
     if (Fullscreen.isEnabled())
@@ -28,7 +28,8 @@ angular.module('starter')
     
   $scope.clicImage = function() {
     console.log('clicImage');
-    $scope.modal.show();
+    //$scope.modal.show();
+	  $state.go('avator');
   }
   
   $scope.clickLogin = function() {
@@ -41,12 +42,12 @@ angular.module('starter')
     $window.location.reload(true);
   }
   
-  $scope.$storage = $localStorage.$default({
-    username: '',
-    password: '',
-    nickname: '名無しさん'
-  });
-  $scope.nickname = $scope.$storage.nickname;
+//  $scope.$storage = $localStorage.$default({
+//    username: '',
+//    password: '',
+//    nickname: '名無しさん'
+//  });
+//  $scope.nickname = $scope.$storage.nickname;
   
   
   $ionicModal.fromTemplateUrl('templates/avator.html', {
@@ -56,9 +57,49 @@ angular.module('starter')
     $scope.modal = modal;
   });
   
+//  $scope.closeAvator = function() {
+//    console.log('closeAvator');
+//    $scope.modal.hide();
+//  }
+  
+  $rootScope.$on('$stateChangeStart', function() {
+    $scope.setProfile();
+  });
+                 
+  $scope.setProfile = function() {
+    $scope.imgsrc = profileService.$storage.avator;
+  }
+  $scope.imgsrc = profileService.$storage.avator;
+  $scope.nickname = profileService.$storage.nickname;
+
+})
+
+
+.controller('AvatorCtrl', function($scope, $ionicHistory, $http, profileService) {
+  //var avatorUrls = avatorService.getAvatorUrls();
+  $scope.images = [];
+  var prof = profileService;
+ 
+  $scope.loadImages = function(profileService) {
+    $http.get('http://xmpp.hplabs.jp/demo/push/lib/avator/list.php')
+    .then(function(response) {
+      var lists = response.data;
+      for(var i = 0; i < lists.length; i++) {
+        $scope.images.push({id: i, src: lists[i]});
+      }
+    });
+
+  }
+  
+  $scope.clickAvator = function(index) {
+    console.log('clickAvator:' + $scope.images[index].src);
+    prof.$storage.avator = $scope.images[index].src;
+    $ionicHistory.goBack();
+  }
+    
   $scope.closeAvator = function() {
     console.log('closeAvator');
-    $scope.modal.hide();
+    $ionicHistory.goBack();
   }
 })
 
